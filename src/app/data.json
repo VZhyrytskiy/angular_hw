@@ -1,0 +1,84 @@
+{
+  "data": [
+    {
+      "name": "You don`t know JS",
+      "description": "Coolest book about JS",
+      "price": 1000,
+      "category": "Book",
+      "isAvaliable": true,
+      "avaliableOnStocks": [
+        {
+          "stockID": 111,
+          "stockName": "Lenina 169",
+          "productAmount": 10
+        },
+        {
+          "stockID": 222,
+          "stockName": "Sovetckaya 15",
+          "productAmount": 20
+        }
+      ],
+      "lastBuyersID": [123214, 123412, 124124, 234234]
+    },
+    {
+      "name": "Hot wheels car",
+      "description": "Toy for kids",
+      "price": 600,
+      "category": "Toy",
+      "isAvaliable": false,
+      "avaliableOnStocks": [
+        {
+          "stockID": 111,
+          "stockName": "Lenina 169",
+          "productAmount": 0
+        },
+        {
+          "stockID": 222,
+          "stockName": "Sovetckaya 15",
+          "productAmount": 10
+        }
+      ],
+      "lastBuyersID": [1232323, 34235, 3453, 567568]
+    },
+    {
+      "name": "Cheeps",
+      "description": "Tasty fastfood",
+      "price": 100,
+      "category": "Food",
+      "isAvaliable": true,
+      "avaliableOnStocks": [
+        {
+          "stockID": 111,
+          "stockName": "Lenina 169",
+          "productAmount": 100
+        },
+        {
+          "stockID": 222,
+          "stockName": "Sovetckaya 15",
+          "productAmount": 0
+        }
+      ],
+      "lastBuyersID": [34234, 13123, 423455, 235325]
+    },
+    {
+      "name": "TV",
+      "description": "LG high quality",
+      "price": 23000,
+      "category": "Electronics",
+      "isAvaliable": true,
+      "avaliableOnStocks": [
+        {
+          "stockID": 111,
+          "stockName": "Lenina 169",
+          "productAmount": 1
+        },
+        {
+          "stockID": 222,
+          "stockName": "Sovetckaya 15",
+          "productAmount": 5
+        }
+      ],
+      "lastBuyersID": [234, 13143242323, 4223455, 2355325]
+    }
+  ]
+}

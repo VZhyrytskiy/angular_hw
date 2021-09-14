@@ -1,0 +1,24 @@
+<div class="component-wrapper">
+  <h2 class="component-category">{{ category }}</h2>
+  <h3 class="component-title">
+    {{ name }}
+  </h3>
+  <p class="component-description">Description: {{ description }}</p>
+  <p class="component-isAvaliable" *ngIf="isAvaliable">Avaliable on shop!</p>
+  <div class="component-isAvaliable" *ngIf="!isAvaliable && avaliableOnStocks">
+    Avaliable on Stocks:
+    <ul class="stock-list">
+      <li class="stock-list__item" *ngFor="let stock of avaliableOnStocks">
+        <p class="stock-name">Stock: {{ stock.stockName }}</p>
+        <p class="stock-name">Amount: {{ stock.productAmount }}</p>
+      </li>
+    </ul>
+  </div>
+  <button
+    *ngIf="isAvaliable || avaliableOnStocks"
+    (click)="onAddToCart(productItem)"
+    class="button__buy button"
+  >
+    Buy
+  </button>
+</div>
