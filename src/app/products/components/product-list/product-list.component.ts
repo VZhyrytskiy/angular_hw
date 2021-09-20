@@ -8,6 +8,7 @@ import { ProductsServiceService } from '../../services/products.service';
   styleUrls: ['./product-list.component.scss'],
 })
 export class ProductListComponentComponent implements OnInit {
+  // receivedData?
   recivedData!: Array<ProductModel>;
 
   constructor(private productsServiceService: ProductsServiceService) {}

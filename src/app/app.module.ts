@@ -11,6 +11,7 @@ import { CartListComponent } from './cart/components/cart-list/cart-list.compone
 @NgModule({
   declarations: [
     AppComponent,
+    // надо бы переименовать эти классы, убрать лишнее Component
     FirstComponentComponent,
     ProductComponentComponent,
     ProductListComponentComponent,
