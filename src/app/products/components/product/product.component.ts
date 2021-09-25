@@ -6,9 +6,10 @@ import { ProductModel } from '../../models/ProductModel';
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss'],
 })
-export class ProductComponentComponent {
+export class ProductComponent {
   @Input()
   productItem!: ProductModel;
+
   constructor() {}
 
   public sendBuyMsg() {

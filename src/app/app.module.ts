@@ -1,23 +1,34 @@
-import { NgModule } from '@angular/core';
+import {
+  NgModule,
+  NO_ERRORS_SCHEMA,
+  CUSTOM_ELEMENTS_SCHEMA,
+} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FirstComponentComponent } from './cart/components/first-component/first.component';
-import { ProductComponentComponent } from './products/components/product/product.component';
-import { ProductListComponentComponent } from './products/components/product-list/product-list.component';
-import { CartListComponent } from './cart/components/cart-list/cart-list.component';
+import { AppRoutingModule } from './app-routing.module';
+
+import { CartModule } from './cart/cart.module';
+import { OrdersModule } from './orders/orders.module';
+import { ProductsModule } from './products/products.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    FirstComponentComponent,
-    ProductComponentComponent,
-    ProductListComponentComponent,
-    CartListComponent,
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    AppRoutingModule,
+
+    CartModule,
+    OrdersModule,
+    ProductsModule,
+    SharedModule,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  exports: [],
   providers: [],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA /* or NO_ERRORS_SCHEMA  */],
 })
 export class AppModule {}

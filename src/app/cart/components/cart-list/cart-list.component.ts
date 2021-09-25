@@ -11,6 +11,7 @@ export class CartListComponent implements OnInit {
   selectedProducts!: Array<ProductModel>;
 
   constructor(public cartService: CartService) {}
+
   ngOnInit(): void {
     this.selectedProducts = this.cartService.getSelectedProducts();
   }
