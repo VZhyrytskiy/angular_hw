@@ -10,9 +10,8 @@ import { CartService } from '../../services/cart.service';
   templateUrl: './first.component.html',
   styleUrls: ['./first.component.scss'],
 })
-export class FirstComponentComponent implements OnInit {
+export class FirstComponent implements OnInit {
   @Input() productItem!: ProductModel;
-  @Output() addToCart = new EventEmitter();
 
   name!: string;
   description!: string;
@@ -22,7 +21,8 @@ export class FirstComponentComponent implements OnInit {
   lastBuyersID?: Array<number>;
   category: string | undefined;
   orderDate!: Date;
-  constructor(private cartService: CartService) {}
+
+  constructor() {}
 
   ngOnInit(): void {
     this.name = this.productItem.name;
@@ -34,6 +34,7 @@ export class FirstComponentComponent implements OnInit {
     this.isAvaliable = this.productItem.isAvaliable;
     this.isAvaliable = this.productItem.isAvaliable;
     this.orderDate = new Date();
+
     switch (this.productItem.category) {
       case 'Book':
         this.category = Categories.Books;
@@ -51,10 +52,5 @@ export class FirstComponentComponent implements OnInit {
       default:
         this.category = undefined;
     }
-  }
-  onAddToCart(product: ProductModel) {
-    this.cartService.setSelectProduct(product);
-    this.cartService.setPriceOfFullOrder();
-    this.addToCart.emit();
   }
 }

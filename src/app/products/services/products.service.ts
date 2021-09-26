@@ -5,7 +5,7 @@ import { ProductModel } from '../models/ProductModel';
 @Injectable({
   providedIn: 'root',
 })
-export class ProductsServiceService {
+export class ProductsService {
   recivedData: Array<ProductModel> = data.data;
 
   constructor() {}
