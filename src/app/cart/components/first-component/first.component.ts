@@ -12,7 +12,6 @@ import { CartService } from '../../services/cart.service';
 })
 export class FirstComponent implements OnInit {
   @Input() productItem!: ProductModel;
-  @Output() addToCart = new EventEmitter();
 
   name!: string;
   description!: string;
@@ -23,7 +22,7 @@ export class FirstComponent implements OnInit {
   category: string | undefined;
   orderDate!: Date;
 
-  constructor(private cartService: CartService) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.name = this.productItem.name;
@@ -53,11 +52,5 @@ export class FirstComponent implements OnInit {
       default:
         this.category = undefined;
     }
-  }
-
-  onAddCart(product: ProductModel) {
-    this.cartService.setSelectProduct(product);
-    this.cartService.setPriceOfFullOrder();
-    this.addToCart.emit();
   }
 }

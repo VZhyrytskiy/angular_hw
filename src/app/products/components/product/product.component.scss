@@ -1,0 +1,22 @@
+.button {
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 5px 20px;
+  margin: 10px 0;
+  width: 100%;
+  height: 30px;
+  &:hover {
+    cursor: pointer;
+  }
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &__buy {
+    color: white;
+    background-color: brown;
+  }
+}
+[disabled] {
+  background-color: gray;
+}

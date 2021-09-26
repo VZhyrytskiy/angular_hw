@@ -9,4 +9,5 @@ export interface ProductModel {
   avaliableOnStocks: Array<Stock>;
   lastBuyersID: Array<number>;
   orderDate?: Date;
+  amountInBasket?: number;
 }

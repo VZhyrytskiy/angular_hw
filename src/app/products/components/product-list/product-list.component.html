@@ -1,5 +1,8 @@
 <ul *ngFor="let productItem of recivedData" class="product-list">
   <li class="product-item">
-    <app-product-component [productItem]="productItem"></app-product-component>
+    <app-product-component
+      [productItem]="productItem"
+      (addToCart)="onAddToBasket($event)"
+    ></app-product-component>
   </li>
 </ul>

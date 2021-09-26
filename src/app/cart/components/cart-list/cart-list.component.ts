@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductModel } from 'src/app/products/models/ProductModel';
 import { CartService } from '../../services/cart.service';
 
@@ -8,15 +8,25 @@ import { CartService } from '../../services/cart.service';
   styleUrls: ['./cart-list.component.scss'],
 })
 export class CartListComponent implements OnInit {
-  selectedProducts!: Array<ProductModel>;
+  selectedProducts!: { productsList: Array<ProductModel>; fullPrice: number };
+  productsInBasket!: Array<ProductModel>;
 
   constructor(public cartService: CartService) {}
 
   ngOnInit(): void {
     this.selectedProducts = this.cartService.getSelectedProducts();
+    this.productsInBasket = this.selectedProducts.productsList;
   }
 
   trackByItems(index: number, el: ProductModel) {
     return el.orderDate;
+  }
+
+  addProduct(productItem: ProductModel) {
+    this.cartService.setSelectProduct(productItem);
+  }
+
+  removeProductItem(productItem: ProductModel) {
+    this.cartService.removeProduct(productItem);
   }
 }

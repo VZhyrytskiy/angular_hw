@@ -20,19 +20,3 @@
     justify-content: center;
   }
 }
-.button {
-  border: 1px solid gray;
-  border-radius: 5px;
-  padding: 5px 20px;
-  &:hover {
-    cursor: pointer;
-  }
-  &:active {
-    transform: scale(0.95);
-  }
-
-  &__buy {
-    color: white;
-    background-color: brown;
-  }
-}

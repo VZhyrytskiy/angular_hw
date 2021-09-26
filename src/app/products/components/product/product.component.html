@@ -1,4 +1,13 @@
 <app-first-component
-  (addCart)="onAddToBasket()"
   [productItem]="productItem"
+  appHightlight
 ></app-first-component>
+<button
+  [attr.disabled]="
+    productItem.isAvaliable || isProductOnAnyStock ? null : 'disabled'
+  "
+  (click)="onAddCart()"
+  class="button__buy button"
+>
+  Buy
+</button>
