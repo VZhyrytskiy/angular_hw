@@ -55,7 +55,7 @@ export class FirstComponent implements OnInit {
     }
   }
 
-  onAddToCart(product: ProductModel) {
+  onAddCart(product: ProductModel) {
     this.cartService.setSelectProduct(product);
     this.cartService.setPriceOfFullOrder();
     this.addToCart.emit();

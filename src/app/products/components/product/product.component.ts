@@ -12,7 +12,7 @@ export class ProductComponent {
 
   constructor() {}
 
-  public sendBuyMsg() {
+  public onAddToBasket() {
     console.log(`сообщение о покупке ${this.productItem.name}`);
   }
 }
