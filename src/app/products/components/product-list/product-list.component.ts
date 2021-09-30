@@ -1,5 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { CartService } from 'src/app/cart/services/cart.service';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { ProductModel } from '../../models/ProductModel';
 import { ProductsService } from '../../services/products.service';
 
@@ -9,21 +8,21 @@ import { ProductsService } from '../../services/products.service';
   styleUrls: ['./product-list.component.scss'],
 })
 export class ProductListComponent implements OnInit {
-  recivedData!: Array<ProductModel>;
+  @Output()
+  addProduct: EventEmitter<ProductModel> = new EventEmitter();
+
+  productsData!: Array<ProductModel>;
   fullPrice: number = 0;
 
-  constructor(
-    private cartService: CartService,
-    private productsServiceService: ProductsService
-  ) {}
+  constructor(private productsServiceService: ProductsService) {}
 
   ngOnInit(): void {
-    this.recivedData = this.productsServiceService.getProducts();
+    this.productsData = this.productsServiceService.getProducts();
     console.log('Data recived');
   }
 
   public onAddToBasket(product: ProductModel) {
-    this.cartService.setSelectProduct(product);
+    this.addProduct.emit(product);
     console.log(`сообщение о покупке ${product.name}`);
   }
 }
