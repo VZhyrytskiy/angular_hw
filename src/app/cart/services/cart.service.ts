@@ -5,15 +5,13 @@ import { ProductModel } from 'src/app/products/models/ProductModel';
   providedIn: 'root',
 })
 export class CartService {
-  selectedProducts: { productsList: Array<ProductModel>; fullPrice: number } = {
-    productsList: [],
-    fullPrice: 0,
-  };
+  private selectedProducts: Array<ProductModel> = [];
+  private fullPrice: number = 0;
 
   constructor() {}
 
   setSelectProduct(product: ProductModel) {
-    let samePosition = this.selectedProducts.productsList.find(
+    let samePosition = this.selectedProducts.find(
       (item) => item.name === product.name
     );
     if (samePosition) {
@@ -21,7 +19,8 @@ export class CartService {
         ? (samePosition.amountInBasket += 1)
         : (samePosition.amountInBasket = 2);
     } else {
-      this.selectedProducts.productsList.push(product);
+      product.amountInBasket = 1;
+      this.selectedProducts.push(product);
     }
     this.setPriceOfFullOrder();
   }
@@ -30,8 +29,12 @@ export class CartService {
     return this.selectedProducts;
   }
 
+  getFullPrice() {
+    return this.fullPrice;
+  }
+
   removeProduct(product: ProductModel) {
-    let samePosition = this.selectedProducts.productsList.find(
+    let samePosition = this.selectedProducts.find(
       (item) => item.name === product.name
     );
 
@@ -39,26 +42,23 @@ export class CartService {
       if (samePosition.amountInBasket > 1) {
         samePosition.amountInBasket -= 1;
       } else {
-        let index = this.selectedProducts.productsList.findIndex(
+        let index = this.selectedProducts.findIndex(
           (item) => item.name === product.name
         );
 
-        this.selectedProducts.productsList.splice(index, 1);
+        this.selectedProducts.splice(index, 1);
       }
     }
     this.setPriceOfFullOrder();
   }
 
   setPriceOfFullOrder() {
-    this.selectedProducts.fullPrice = this.selectedProducts.productsList.reduce(
-      (sum, item) => {
-        if (item.amountInBasket) {
-          return (sum += item.price * item.amountInBasket);
-        } else {
-          return (sum += item.price);
-        }
-      },
-      0
-    );
+    this.fullPrice = this.selectedProducts.reduce((sum, item) => {
+      if (item.amountInBasket) {
+        return (sum += item.price * item.amountInBasket);
+      } else {
+        return (sum += item.price);
+      }
+    }, 0);
   }
 }

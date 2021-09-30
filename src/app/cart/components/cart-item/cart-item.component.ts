@@ -4,7 +4,6 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnInit,
   Output,
 } from '@angular/core';
 
@@ -12,11 +11,13 @@ import {
   selector: 'app-cart-item',
   templateUrl: './cart-item.component.html',
   styleUrls: ['./cart-item.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush, не изменяется свойство productItem.amountInBasket
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CartItemComponent {
   @Input() productItem!: ProductModel;
-  @Output() addProductItem = new EventEmitter();
+  @Input() amountOfProduct: number | undefined;
+  @Output()
+  addProductItem = new EventEmitter();
   @Output() removeProductItem = new EventEmitter();
 
   constructor() {}

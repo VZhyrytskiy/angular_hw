@@ -3,7 +3,6 @@ import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { ProductModel } from '../../../products/models/ProductModel';
 
 import { Categories, Stock } from '../../models/cartModel';
-import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-first-component',

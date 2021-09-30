@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductModel } from 'src/app/products/models/ProductModel';
+import { ProductModel } from './../../../products/models/ProductModel';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  AfterContentChecked,
+} from '@angular/core';
 import { CartService } from '../../services/cart.service';
 
 @Component({
@@ -7,26 +13,29 @@ import { CartService } from '../../services/cart.service';
   templateUrl: './cart-list.component.html',
   styleUrls: ['./cart-list.component.scss'],
 })
-export class CartListComponent implements OnInit {
-  selectedProducts!: { productsList: Array<ProductModel>; fullPrice: number };
-  productsInBasket!: Array<ProductModel>;
+export class CartListComponent implements AfterContentChecked {
+  @Input() selectedProduct!: ProductModel[];
 
-  constructor(public cartService: CartService) {}
+  @Output() addProduct: EventEmitter<ProductModel> = new EventEmitter();
+  @Output() removeProduct: EventEmitter<ProductModel> = new EventEmitter();
 
-  ngOnInit(): void {
-    this.selectedProducts = this.cartService.getSelectedProducts();
-    this.productsInBasket = this.selectedProducts.productsList;
+  fullPrice: number = 0;
+
+  constructor(private cartService: CartService) {}
+
+  ngAfterContentChecked(): void {
+    this.fullPrice = this.cartService.getFullPrice();
   }
 
   trackByItems(index: number, el: ProductModel) {
     return el.orderDate;
   }
 
-  addProduct(productItem: ProductModel) {
-    this.cartService.setSelectProduct(productItem);
+  onAddProductItem(productItem: ProductModel) {
+    this.addProduct.emit(productItem);
   }
 
-  removeProductItem(productItem: ProductModel) {
-    this.cartService.removeProduct(productItem);
+  onRemoveAnotherOneProduct(productItem: ProductModel) {
+    this.removeProduct.emit(productItem);
   }
 }

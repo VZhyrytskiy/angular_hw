@@ -1,7 +1,7 @@
 <li class="orders-item" appHighlight>
   <p class="order-title">Name: {{ productItem.name }}</p>
   <p class="order-title">Price: {{ productItem.price }}</p>
-  <p class="order-title">Amount: {{ productItem.amountInBasket || "1" }}</p>
+  <p class="order-title">Amount: {{ amountOfProduct }}</p>
   <div class="change-amount">
     <button class="add-product" (click)="onAddAnotherOneProduct()">+</button>
     <button class="add-product" (click)="onRemoveAnotherOneProduct()">-</button>

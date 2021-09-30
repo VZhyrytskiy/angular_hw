@@ -2,16 +2,17 @@
   <h5>Basket:</h5>
   <ul class="orders-list">
     <ng-container
-      *ngFor="let productItem of productsInBasket; trackBy: trackByItems"
+      *ngFor="let product of selectedProduct; trackBy: trackByItems"
     >
       <app-cart-item
-        [productItem]="productItem"
-        (addProductItem)="addProduct($event)"
-        (removeProductItem)="removeProductItem($event)"
+        [productItem]="product"
+        [amountOfProduct]="product.amountInBasket"
+        (addProductItem)="onAddProductItem($event)"
+        (removeProductItem)="onRemoveAnotherOneProduct($event)"
       ></app-cart-item>
     </ng-container>
   </ul>
   <div class="basket-wrapper">
-    <p>Full price: {{ selectedProducts.fullPrice }}</p>
+    <p>Full price: {{ fullPrice }}</p>
   </div>
 </div>

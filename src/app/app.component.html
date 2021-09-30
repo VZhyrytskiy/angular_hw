@@ -1,5 +1,12 @@
-<h1 #appTitle></h1>
-<app-product-list-component
-  class="product-wrapper"
-></app-product-list-component>
-<app-cart-list></app-cart-list>
+<div class="app-wrapper">
+  <h1 #appTitle></h1>
+  <app-product-list-component
+    (addProduct)="onAddProductItem($event)"
+    class="product-wrapper"
+  ></app-product-list-component>
+  <app-cart-list
+    [selectedProduct]="selectedProduct"
+    (addProduct)="onAddProductItem($event)"
+    (removeProduct)="onRemoveProductItem($event)"
+  ></app-cart-list>
+</div>
