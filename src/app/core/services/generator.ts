@@ -64,11 +64,13 @@ export class GeneratorService {
   ];
   private zeroNine_Array: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-  private generator: Observable<number>;
+  // private generator: Observable<number>;
 
-  constructor(@Inject(idGenerator) generator: Observable<number>) {
-    this.generator = generator;
-  }
+  constructor() {}
+
+  // constructor(@Inject(idGenerator) generator: Observable<number>) {
+  //   this.generator = generator;
+  // }
 
   generate(n: number) {
     let str = '';
@@ -85,11 +87,11 @@ export class GeneratorService {
     return str;
   }
 
-  getNewID(): Observable<number> {
-    return this.generator;
-  }
+  // getNewID(): Observable<number> {
+  //   return this.generator;
+  // }
 }
 
-export const generatedId: InjectionToken<string> = new InjectionToken<string>(
-  'Random sequence generator'
-);
+// export const generatedId: InjectionToken<string> = new InjectionToken<string>(
+//   'Random sequence generator'
+// );
