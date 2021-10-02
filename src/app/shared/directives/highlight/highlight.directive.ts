@@ -15,7 +15,6 @@ export class HighlightDirective {
 
   @HostListener('mouseenter')
   onMouseEnter(): void {
-    console.log('works');
     this.highlight('lightgray');
   }
 
