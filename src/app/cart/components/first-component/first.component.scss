@@ -18,5 +18,13 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    &__last::before {
+      content: 'Последний товар!';
+      display: block;
+      margin: 10px 0;
+      width: 100%;
+      color: brown;
+      font-size: 18px;
+    }
   }
 }

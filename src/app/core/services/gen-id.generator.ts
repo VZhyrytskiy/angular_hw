@@ -1,10 +1,20 @@
 import { InjectionToken } from '@angular/core';
-import { Observable, timer } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { interval, Observable } from 'rxjs';
 
-export const genID: Observable<number> = timer(0, 1000).pipe(
-  map(() => Math.random())
-);
+export class genID {
+  public lastNumber = 0;
+  private sequence = interval(1000);
 
-export const idGenerator: InjectionToken<Observable<number>> =
-  new InjectionToken<Observable<number>>('Infinite number sequence');
+  private lastGeneratedNumber = this.sequence.pipe();
+
+  public generatedNumber = new InjectionToken<Observable<number>>(
+    'generatedNumber'
+  );
+  constructor() {
+    this.lastGeneratedNumber.subscribe((num) => (this.lastNumber = num));
+  }
+
+  getID() {
+    return this.lastNumber;
+  }
+}

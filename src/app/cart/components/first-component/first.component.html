@@ -3,7 +3,7 @@
   <h3 class="component-title">
     {{ name }}
   </h3>
-  <p class="component-description">Description: {{ description }}</p>
+  <p class="component-description" [ngClass] = "{ 'component-isAvaliable__last' : lastProduct}">Description: {{ description }}</p>
   <p class="component-isAvaliable" *ngIf="isAvaliable">Avaliable on shop!</p>
   <div class="component-isAvaliable" *ngIf="!isAvaliable && avaliableOnStocks">
     Avaliable on Stocks:

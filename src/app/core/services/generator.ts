@@ -1,11 +1,11 @@
 import { Inject, Injectable, InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
-import { idGenerator } from './gen-id.generator';
+import { genID } from './gen-id.generator';
 
 @Injectable({
   providedIn: 'root',
 })
-export class GeneratorService {
+export class GeneratorService extends genID {
   private AZ_Array: string[] = [
     'A',
     'B',
@@ -64,13 +64,9 @@ export class GeneratorService {
   ];
   private zeroNine_Array: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-  // private generator: Observable<number>;
-
-  constructor() {}
-
-  // constructor(@Inject(idGenerator) generator: Observable<number>) {
-  //   this.generator = generator;
-  // }
+  constructor() {
+    super();
+  }
 
   generate(n: number) {
     let str = '';
@@ -87,11 +83,7 @@ export class GeneratorService {
     return str;
   }
 
-  // getNewID(): Observable<number> {
-  //   return this.generator;
-  // }
+  getNewID() {
+    return this.getID();
+  }
 }
-
-// export const generatedId: InjectionToken<string> = new InjectionToken<string>(
-//   'Random sequence generator'
-// );

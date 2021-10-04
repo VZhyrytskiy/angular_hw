@@ -10,4 +10,5 @@ export interface ProductModel {
   lastBuyersID: Array<number>;
   orderDate?: Date;
   amountInBasket?: number;
+  promoCode?: string;
 }
