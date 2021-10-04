@@ -5,13 +5,14 @@ import { ProductModel } from 'src/app/products/models/ProductModel';
   providedIn: 'root',
 })
 export class CartService {
-  private selectedProducts: Array<ProductModel> = [];
-  private fullPrice: number = 0;
+  private cartProducts: Array<ProductModel> = [];
+  private totalQuantity: number = 0;
+  private totalSum: number = 0;
 
   constructor() {}
 
-  setSelectProduct(product: ProductModel) {
-    let samePosition = this.selectedProducts.find(
+  addProduct(product: ProductModel) {
+    let samePosition = this.cartProducts.find(
       (item) => item.name === product.name
     );
     if (samePosition) {
@@ -20,21 +21,25 @@ export class CartService {
         : (samePosition.amountInBasket = 2);
     } else {
       product.amountInBasket = 1;
-      this.selectedProducts.push(product);
+      this.cartProducts.push(product);
     }
-    this.setPriceOfFullOrder();
+    this.updateCartData();
   }
 
-  getSelectedProducts() {
-    return this.selectedProducts;
+  getTotalQuantity() {
+    return this.totalQuantity;
+  }
+
+  getProducts() {
+    return this.cartProducts;
   }
 
   getFullPrice() {
-    return this.fullPrice;
+    return this.totalSum;
   }
 
   removeProduct(product: ProductModel) {
-    let samePosition = this.selectedProducts.find(
+    let samePosition = this.cartProducts.find(
       (item) => item.name === product.name
     );
 
@@ -42,23 +47,56 @@ export class CartService {
       if (samePosition.amountInBasket > 1) {
         samePosition.amountInBasket -= 1;
       } else {
-        let index = this.selectedProducts.findIndex(
+        let index = this.cartProducts.findIndex(
           (item) => item.name === product.name
         );
 
-        this.selectedProducts.splice(index, 1);
+        this.cartProducts.splice(index, 1);
       }
     }
-    this.setPriceOfFullOrder();
+    this.updateCartData();
   }
 
-  setPriceOfFullOrder() {
-    this.fullPrice = this.selectedProducts.reduce((sum, item) => {
+  private changeQuantity(product: ProductModel, amount: number) {
+    const productToChange = this.cartProducts.find(
+      (item) => item.name === product.name
+    );
+    if (productToChange?.amountInBasket) {
+      productToChange.amountInBasket += amount;
+    }
+    this.updateCartData();
+  }
+
+  increaseQuantity(product: ProductModel, amount: number) {
+    this.changeQuantity(product, amount);
+  }
+
+  decreaseQuantity(product: ProductModel, amount: number) {
+    this.changeQuantity(product, -amount);
+  }
+
+  removeAllProducts() {
+    this.cartProducts = [];
+  }
+
+  private updateCartData() {
+    this.totalSum = this.cartProducts.reduce((sum, item) => {
       if (item.amountInBasket) {
         return (sum += item.price * item.amountInBasket);
       } else {
         return (sum += item.price);
       }
     }, 0);
+    this.totalQuantity = this.cartProducts.reduce((amount, item) => {
+      if (item.amountInBasket) {
+        return (amount += item.amountInBasket);
+      } else {
+        return amount;
+      }
+    }, 0);
+  }
+
+  isEmptyCart() {
+    return this.cartProducts.length > 0 ? false : true;
   }
 }

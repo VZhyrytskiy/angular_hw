@@ -3,7 +3,6 @@ import {
   ElementRef,
   HostBinding,
   HostListener,
-  Input,
   Renderer2,
 } from '@angular/core';
 
@@ -15,8 +14,7 @@ export class HighlightDirective {
 
   @HostListener('mouseenter')
   onMouseEnter(): void {
-    console.log('works');
-    this.highlight('lightgray');
+    this.highlight('#f7f4f4');
   }
 
   @HostListener('mouseleave')
@@ -30,5 +28,6 @@ export class HighlightDirective {
 
   private highlight(color: string | null): void {
     this.render.setStyle(this.el.nativeElement, 'backgroundColor', color);
+    this.render.setStyle(this.el.nativeElement, 'border', '2px solid #befbfd');
   }
 }
