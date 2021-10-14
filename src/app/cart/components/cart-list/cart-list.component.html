@@ -13,6 +13,6 @@
     </ng-container>
   </ul>
   <div class="basket-wrapper">
-    <p>Full price: {{ fullPrice }}</p>
+    <p>Full price: {{ fullPrice | currency: "RUB":"symbol" }}</p>
   </div>
 </div>
