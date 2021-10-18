@@ -57,6 +57,7 @@ export class CartService {
     this.updateCartData();
   }
 
+  // старайтесь приватные методы добавлять после публичных
   private changeQuantity(product: ProductModel, amount: number) {
     const productToChange = this.cartProducts.find(
       (item) => item.name === product.name

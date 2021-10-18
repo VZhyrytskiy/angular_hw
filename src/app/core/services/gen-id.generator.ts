@@ -2,19 +2,21 @@ import { InjectionToken } from '@angular/core';
 import { interval, Observable } from 'rxjs';
 
 export class genID {
-  public lastNumber = 0;
   private sequence = interval(1000);
-
   private lastGeneratedNumber = this.sequence.pipe();
 
-  public generatedNumber = new InjectionToken<Observable<number>>(
+  lastNumber = 0;
+  generatedNumber = new InjectionToken<Observable<number>>(
     'generatedNumber'
   );
+
   constructor() {
-    this.lastGeneratedNumber.subscribe((num) => (this.lastNumber = num));
+    // не очень понятно, почему нельзя подписаться на sequence
+    // если есть подписка на бесконечный поток, то надо делать отписку
+    this.lastGeneratedNumber.subscribe(num => this.lastNumber = num);
   }
 
-  getID() {
+  getID(): number {
     return this.lastNumber;
   }
 }

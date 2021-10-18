@@ -16,17 +16,17 @@ import {
 export class CartItemComponent {
   @Input() productItem!: ProductModel;
   @Input() amountOfProduct: number | undefined;
-  @Output()
-  addProductItem = new EventEmitter();
-  @Output() removeProductItem = new EventEmitter();
+
+  @Output() addProductItem = new EventEmitter<ProductModel>();
+  @Output() removeProductItem = new EventEmitter<ProductModel>();
 
   constructor() {}
 
-  onAddAnotherOneProduct() {
+  onAddAnotherOneProduct(): void {
     this.addProductItem.emit(this.productItem);
   }
 
-  onRemoveAnotherOneProduct() {
+  onRemoveAnotherOneProduct(): void {
     this.removeProductItem.emit(this.productItem);
   }
 }

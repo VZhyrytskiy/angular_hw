@@ -13,7 +13,7 @@ export class ProductListComponent implements OnInit {
   addProduct: EventEmitter<ProductModel> = new EventEmitter();
 
   productsData!: Observable<ProductModel[]>;
-  fullPrice: number = 0;
+  fullPrice: number = 0;  // ?
 
   constructor(private productsService: ProductsService) {}
 

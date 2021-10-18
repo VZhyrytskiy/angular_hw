@@ -11,7 +11,7 @@ export class ProductComponent implements OnInit {
   @Input() productItem!: ProductModel;
   @Output() addToCart = new EventEmitter();
 
-  public isProductOnAnyStock: boolean = false;
+  isProductOnAnyStock: boolean = false;
 
   constructor() {}
 

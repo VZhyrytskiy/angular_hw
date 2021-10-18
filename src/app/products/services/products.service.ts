@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subscriber } from 'rxjs';
-import data from '../../data.json';
+import db from '../../data.json';
 import { ProductModel } from '../models/ProductModel';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductsService {
-  recivedData: ProductModel[] = data.data;
+  recivedData: ProductModel[] = db.data;
 
   constructor() {}
 
@@ -15,7 +15,7 @@ export class ProductsService {
     return  new Observable<ProductModel[]>((observer: Subscriber<ProductModel[]>) => {
       setTimeout(() => {
         observer.next(this.recivedData);
-      }, 1000);  
+      }, 1000);
     })
   }
 }

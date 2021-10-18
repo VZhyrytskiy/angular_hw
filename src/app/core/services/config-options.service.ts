@@ -17,7 +17,7 @@ export class ConfigOptionsService {
     this.userConfig = { ...this.userConfig, ...newConfig };
   }
 
-  getConfig() {
+  getConfig():ConfigModel {
     return this.userConfig;
   }
 }

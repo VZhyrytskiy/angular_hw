@@ -1,6 +1,7 @@
 <app-first-component
   [productItem]="productItem"
 ></app-first-component>
+<!-- Нет необходимости использовать атрибут, есть булевое свойство [disabled] -->
 <button
   [attr.disabled]="
     productItem.isAvaliable || isProductOnAnyStock ? null : 'disabled'
