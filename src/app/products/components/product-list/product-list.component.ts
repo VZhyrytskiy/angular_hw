@@ -1,4 +1,5 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ProductModel } from '../../models/ProductModel';
 import { ProductsService } from '../../services/products.service';
 
@@ -11,14 +12,13 @@ export class ProductListComponent implements OnInit {
   @Output()
   addProduct: EventEmitter<ProductModel> = new EventEmitter();
 
-  productsData!: Array<ProductModel>;
+  productsData!: Observable<ProductModel[]>;
   fullPrice: number = 0;
 
-  constructor(private productsServiceService: ProductsService) {}
+  constructor(private productsService: ProductsService) {}
 
   ngOnInit(): void {
-    this.productsData = this.productsServiceService.getProducts();
-    console.log('Data recived');
+    this.productsData = this.productsService.getProducts();
   }
 
   public onAddToBasket(product: ProductModel) {

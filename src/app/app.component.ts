@@ -4,6 +4,7 @@ import {
   ViewChild,
   AfterViewInit,
   Optional,
+  OnInit,
 } from '@angular/core';
 import { CartService } from 'src/app/cart/services/cart.service';
 import {
@@ -24,7 +25,7 @@ import { ProductModel } from './products/models/ProductModel';
     },
   ],
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements OnInit, AfterViewInit {
   @ViewChild('appTitle') title!: ElementRef<HTMLHeadingElement>;
 
   selectedProduct: ProductModel[];

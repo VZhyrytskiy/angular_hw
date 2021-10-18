@@ -1,9 +1,22 @@
-<li class="orders-item" appHighlight  appFontSizeChanger>
-  <p class="order-title">Name: {{ productItem.name }}</p>
-  <p class="order-title">Price: {{ productItem.price }}</p>
-  <p class="order-title">Amount: {{ amountOfProduct }}</p>
+<li class="orders-item" appHighlight appFontSizeChanger>
+  <p class="order-title">Name: {{ productItem.name | uppercase }}</p>
+  <p class="order-title">
+    Price: {{ productItem.price | currency: "RUB":"symbol" }}
+  </p>
+
   <div class="change-amount">
-    <button class="add-product" (click)="onAddAnotherOneProduct()">+</button>
-    <button class="add-product" (click)="onRemoveAnotherOneProduct()">-</button>
+    <p class="order-title__amount">Amount: {{ amountOfProduct }}</p>
+    <button
+      class="add-product button mat-button-toggle-standalone"
+      (click)="onAddAnotherOneProduct()"
+    >
+      +
+    </button>
+    <button
+      class="remove-product button mat-button-toggle-standalone"
+      (click)="onRemoveAnotherOneProduct()"
+    >
+      -
+    </button>
   </div>
 </li>

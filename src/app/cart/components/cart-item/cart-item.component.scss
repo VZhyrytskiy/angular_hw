@@ -3,4 +3,17 @@
   padding: 25px;
   margin: 10px;
   transition: all 0.3s;
+  .order-title__amount {
+    margin: 0;
+    flex-grow: 1;
+  }
+  .change-amount {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-width: 130px;
+  }
+  .button {
+    margin: 2px;
+  }
 }
