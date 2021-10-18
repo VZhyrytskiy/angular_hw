@@ -1,18 +1,45 @@
-<div class="orders-wrapper">
+<div class="basket-wrapper">
+  <span [ngClass]="{ 'visually-hidden': !isSorted }"
+    >Products were sorted!</span
+  >
   <h5>Basket:</h5>
-  <ul class="orders-list">
-    <ng-container
-      *ngFor="let product of selectedProduct; trackBy: trackByItems"
-    >
-      <app-cart-item
-        [productItem]="product"
-        [amountOfProduct]="product.amountInBasket"
-        (addProductItem)="onAddProductItem($event)"
-        (removeProductItem)="onRemoveAnotherOneProduct($event)"
-      ></app-cart-item>
-    </ng-container>
-  </ul>
-  <div class="basket-wrapper">
+
+  <div class="goods-container">
+    <div class="filters-wrapper">
+      <mat-form-field appearance="fill">
+        <mat-label>Choose filter</mat-label>
+        <mat-select
+          matNativeControl
+          [(value)]="filterValue"
+          (selectionChange)="sortSelectedItems()"
+        >
+          <mat-option value="price">Price</mat-option>
+          <mat-option value="amountInBasket">Amount</mat-option>
+          <mat-option value="name">Name</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-checkbox
+        class="filter-checkbox"
+        [(ngModel)]="isAsc"
+        (change)="sortSelectedItems()"
+        >Descending</mat-checkbox
+      >
+    </div>
+
+    <ul class="orders-list">
+      <ng-container
+        *ngFor="let product of selectedProduct; trackBy: trackByItems"
+      >
+        <app-cart-item
+          [productItem]="product"
+          [amountOfProduct]="product.amountInBasket"
+          (addProductItem)="onAddProductItem($event)"
+          (removeProductItem)="onRemoveAnotherOneProduct($event)"
+        ></app-cart-item>
+      </ng-container>
+    </ul>
+  </div>
+  <div>
     <p>Full price: {{ fullPrice | currency: "RUB":"symbol" }}</p>
   </div>
 </div>

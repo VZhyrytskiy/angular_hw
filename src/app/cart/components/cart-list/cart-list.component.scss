@@ -4,3 +4,36 @@
   padding: 0;
   display: flex;
 }
+
+.filters-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.goods-container {
+  display: flex;
+  align-items: baseline;
+  margin: 15px 0;
+}
+
+.filter {
+  button {
+    width: 100px;
+    margin: 5px;
+  }
+}
+
+.visually-hidden {
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.filter-checkbox {
+  margin: 10px;
+}
+
+.filters-wrapper {
+  display: flex;
+  flex-direction: column;
+}
